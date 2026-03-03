@@ -29,6 +29,7 @@ use crate::IGNORE_IDENTIFIERS;
 use crate::INITIAL_CONFIGURATION_LOADED;
 use crate::LAYERED_WHITELIST;
 use crate::MANAGE_IDENTIFIERS;
+use crate::WHITELIST_MODE_ENABLED;
 use crate::MONITOR_INDEX_PREFERENCES;
 use crate::NO_TITLEBAR;
 use crate::Notification;
@@ -568,6 +569,12 @@ impl WindowManager {
                         matching_strategy: Option::from(MatchingStrategy::Legacy),
                     }));
                 }
+            }
+            SocketMessage::WhitelistMode(enabled) => {
+                WHITELIST_MODE_ENABLED.store(enabled, Ordering::SeqCst);
+
+                let status = if enabled { "enabled" } else { "disabled" };
+                tracing::info!("Whitelist mode {}", status);
             }
             SocketMessage::SessionFloatRule => {
                 let foreground_window = WindowsApi::foreground_window()?;

@@ -230,6 +230,8 @@ pub enum SocketMessage {
     #[serde(alias = "FloatRule")]
     IgnoreRule(ApplicationIdentifier, String),
     ManageRule(ApplicationIdentifier, String),
+    /// Enable or disable whitelist mode
+    WhitelistMode(bool),
     IdentifyObjectNameChangeApplication(ApplicationIdentifier, String),
     IdentifyTrayApplication(ApplicationIdentifier, String),
     IdentifyLayeredApplication(ApplicationIdentifier, String),
