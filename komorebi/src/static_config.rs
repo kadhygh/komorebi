@@ -14,6 +14,7 @@ use crate::HIDING_BEHAVIOUR;
 use crate::IGNORE_IDENTIFIERS;
 use crate::LAYERED_WHITELIST;
 use crate::MANAGE_IDENTIFIERS;
+use crate::WHITELIST_MODE_ENABLED;
 use crate::MONITOR_INDEX_PREFERENCES;
 use crate::NO_TITLEBAR;
 use crate::OBJECT_NAME_CHANGE_ON_LAUNCH;
@@ -588,6 +589,10 @@ pub struct StaticConfig {
     /// Individual window force-manage rules
     #[serde(skip_serializing_if = "Option::is_none")]
     pub manage_rules: Option<Vec<MatchingRule>>,
+    /// Enable whitelist mode (only manage windows in manage_rules)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "schemars", schemars(extend("default" = false)))]
+    pub whitelist_mode: Option<bool>,
     /// Identify applications which should be managed as floating windows
     #[serde(skip_serializing_if = "Option::is_none")]
     pub floating_applications: Option<Vec<MatchingRule>>,
@@ -886,6 +891,7 @@ impl From<&WindowManager> for StaticConfig {
             ignore_rules: None,
             floating_applications: None,
             manage_rules: None,
+            whitelist_mode: Some(WHITELIST_MODE_ENABLED.load(Ordering::SeqCst)),
             border_overflow_applications: None,
             tray_and_multi_window_applications: None,
             layered_applications: None,
@@ -1090,6 +1096,12 @@ impl StaticConfig {
 
         if let Some(rules) = &mut self.manage_rules {
             populate_rules(rules, &mut manage_identifiers, &mut regex_identifiers)?;
+        }
+
+        // Apply whitelist mode setting
+        if let Some(whitelist_mode) = self.whitelist_mode {
+            WHITELIST_MODE_ENABLED.store(whitelist_mode, Ordering::SeqCst);
+            tracing::info!("Whitelist mode: {}", if whitelist_mode { "enabled" } else { "disabled" });
         }
 
         if let Some(rules) = &mut self.object_name_change_applications {

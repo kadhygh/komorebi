@@ -12,6 +12,7 @@ use crate::HidingBehaviour;
 use crate::IGNORE_IDENTIFIERS;
 use crate::LAYERED_WHITELIST;
 use crate::MANAGE_IDENTIFIERS;
+use crate::WHITELIST_MODE_ENABLED;
 use crate::MONITOR_INDEX_PREFERENCES;
 use crate::MoveBehaviour;
 use crate::OBJECT_NAME_CHANGE_ON_LAUNCH;
@@ -65,6 +66,7 @@ pub struct State {
     pub work_area_offset: Option<Rect>,
     pub focus_follows_mouse: Option<FocusFollowsMouseImplementation>,
     pub mouse_follows_focus: bool,
+    pub whitelist_mode: bool,
     pub has_pending_raise_op: bool,
     pub virtual_desktop_id: Option<Vec<u8>>,
 }
@@ -300,6 +302,7 @@ impl From<&WindowManager> for State {
             cross_monitor_move_behaviour: wm.cross_monitor_move_behaviour,
             focus_follows_mouse: wm.focus_follows_mouse,
             mouse_follows_focus: wm.mouse_follows_focus,
+            whitelist_mode: WHITELIST_MODE_ENABLED.load(Ordering::SeqCst),
             has_pending_raise_op: wm.has_pending_raise_op,
             unmanaged_window_operation_behaviour: wm.unmanaged_window_operation_behaviour,
             virtual_desktop_id: wm.virtual_desktop_id.clone(),
