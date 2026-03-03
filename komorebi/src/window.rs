@@ -6,6 +6,7 @@ use crate::HIDING_BEHAVIOUR;
 use crate::IGNORE_IDENTIFIERS;
 use crate::LAYERED_WHITELIST;
 use crate::MANAGE_IDENTIFIERS;
+use crate::WHITELIST_MODE_ENABLED;
 use crate::NO_TITLEBAR;
 use crate::PERMAIGNORE_CLASSES;
 use crate::REGEX_IDENTIFIERS;
@@ -1038,6 +1039,10 @@ fn window_is_eligible(
         && (allow_layered || !ex_style.contains(ExtendedWindowStyle::LAYERED))
         || managed_override
     {
+        // If whitelist mode is enabled, only manage windows in the whitelist
+        if WHITELIST_MODE_ENABLED.load(Ordering::SeqCst) {
+            return managed_override;
+        }
         return true;
     } else if let Some(event) = event {
         tracing::debug!(
