@@ -618,6 +618,12 @@ gen_application_target_subcommand_args! {
 }
 
 #[derive(Parser)]
+struct WhitelistMode {
+    /// Enable or disable whitelist mode
+    enable: bool,
+}
+
+#[derive(Parser)]
 struct InitialWorkspaceRule {
     #[clap(value_enum)]
     identifier: ApplicationIdentifier,
@@ -1434,6 +1440,9 @@ enum SubCommand {
     /// Add a rule to always manage the specified application
     #[clap(arg_required_else_help = true)]
     ManageRule(ManageRule),
+    /// Enable or disable whitelist mode
+    #[clap(arg_required_else_help = true)]
+    WhitelistMode(WhitelistMode),
     /// Add a rule to associate an application with a workspace on first show
     #[clap(arg_required_else_help = true)]
     InitialWorkspaceRule(InitialWorkspaceRule),
@@ -2870,6 +2879,9 @@ if (Get-Command Get-CimInstance -ErrorAction SilentlyContinue) {
         }
         SubCommand::ManageRule(args) => {
             send_message(&SocketMessage::ManageRule(args.identifier, args.id))?;
+        }
+        SubCommand::WhitelistMode(args) => {
+            send_message(&SocketMessage::WhitelistMode(args.enable))?;
         }
         SubCommand::InitialWorkspaceRule(args) => {
             send_message(&SocketMessage::InitialWorkspaceRule(
