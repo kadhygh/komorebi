@@ -96,7 +96,18 @@ impl WindowManager {
 
         let mut rule_debug = RuleDebug::default();
 
-        let should_manage = event.window().should_manage(Some(event), &mut rule_debug)?;
+        // Manage and Unmanage events should bypass the should_manage check
+        // to allow users to force-manage windows even in whitelist mode
+        let bypass_should_manage = matches!(
+            event,
+            WindowManagerEvent::Manage(_) | WindowManagerEvent::Unmanage(_)
+        );
+
+        let should_manage = if bypass_should_manage {
+            true
+        } else {
+            event.window().should_manage(Some(event), &mut rule_debug)?
+        };
 
         // All event handlers below this point should only be processed if the event is
         // related to a window that should be managed by the WindowManager.
