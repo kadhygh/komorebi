@@ -144,6 +144,7 @@ lazy_static! {
         Arc::new(Mutex::new(HashMap::new()));
     static ref MANAGE_IDENTIFIERS: Arc<Mutex<Vec<MatchingRule>>> = Arc::new(Mutex::new(vec![]));
     static ref WHITELIST_MODE_ENABLED: AtomicBool = AtomicBool::new(false);
+    static ref FORCE_MANAGE_ENABLED: AtomicBool = AtomicBool::new(false);
     static ref IGNORE_IDENTIFIERS: Arc<Mutex<Vec<MatchingRule>>> = Arc::new(Mutex::new(vec![
         // mstsc.exe creates these on Windows 11 when a WSL process is launched
         // https://github.com/LGUG2Z/komorebi/issues/74

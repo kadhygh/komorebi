@@ -6,6 +6,7 @@ use crate::DATA_DIR;
 use crate::DISPLAY_INDEX_PREFERENCES;
 use crate::DUPLICATE_MONITOR_SERIAL_IDS;
 use crate::FocusFollowsMouseImplementation;
+use crate::FORCE_MANAGE_ENABLED;
 use crate::HIDING_BEHAVIOUR;
 use crate::HOME_DIR;
 use crate::HidingBehaviour;
@@ -67,6 +68,7 @@ pub struct State {
     pub focus_follows_mouse: Option<FocusFollowsMouseImplementation>,
     pub mouse_follows_focus: bool,
     pub whitelist_mode: bool,
+    pub force_manage: bool,
     pub has_pending_raise_op: bool,
     pub virtual_desktop_id: Option<Vec<u8>>,
 }
@@ -303,6 +305,7 @@ impl From<&WindowManager> for State {
             focus_follows_mouse: wm.focus_follows_mouse,
             mouse_follows_focus: wm.mouse_follows_focus,
             whitelist_mode: WHITELIST_MODE_ENABLED.load(Ordering::SeqCst),
+            force_manage: FORCE_MANAGE_ENABLED.load(Ordering::SeqCst),
             has_pending_raise_op: wm.has_pending_raise_op,
             unmanaged_window_operation_behaviour: wm.unmanaged_window_operation_behaviour,
             virtual_desktop_id: wm.virtual_desktop_id.clone(),

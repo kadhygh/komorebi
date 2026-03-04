@@ -624,6 +624,12 @@ struct WhitelistMode {
 }
 
 #[derive(Parser)]
+struct ForceManage {
+    /// Enable or disable force manage mode
+    enable: bool,
+}
+
+#[derive(Parser)]
 struct InitialWorkspaceRule {
     #[clap(value_enum)]
     identifier: ApplicationIdentifier,
@@ -1443,6 +1449,9 @@ enum SubCommand {
     /// Enable or disable whitelist mode
     #[clap(arg_required_else_help = true)]
     WhitelistMode(WhitelistMode),
+    /// Enable or disable force manage mode
+    #[clap(arg_required_else_help = true)]
+    ForceManage(ForceManage),
     /// Add a rule to associate an application with a workspace on first show
     #[clap(arg_required_else_help = true)]
     InitialWorkspaceRule(InitialWorkspaceRule),
@@ -2882,6 +2891,9 @@ if (Get-Command Get-CimInstance -ErrorAction SilentlyContinue) {
         }
         SubCommand::WhitelistMode(args) => {
             send_message(&SocketMessage::WhitelistMode(args.enable))?;
+        }
+        SubCommand::ForceManage(args) => {
+            send_message(&SocketMessage::ForceManage(args.enable))?;
         }
         SubCommand::InitialWorkspaceRule(args) => {
             send_message(&SocketMessage::InitialWorkspaceRule(

@@ -15,6 +15,7 @@ use crate::core::WindowContainerBehaviour;
 use crate::CURRENT_VIRTUAL_DESKTOP;
 use crate::DefaultLayout;
 use crate::FLOATING_APPLICATIONS;
+use crate::FORCE_MANAGE_ENABLED;
 use crate::HIDDEN_HWNDS;
 use crate::Layout;
 use crate::Notification;
@@ -98,10 +99,12 @@ impl WindowManager {
 
         // Manage and Unmanage events should bypass the should_manage check
         // to allow users to force-manage windows even in whitelist mode
-        let bypass_should_manage = matches!(
-            event,
-            WindowManagerEvent::Manage(_) | WindowManagerEvent::Unmanage(_)
-        );
+        // This behavior is controlled by the force_manage setting
+        let bypass_should_manage = FORCE_MANAGE_ENABLED.load(Ordering::SeqCst)
+            && matches!(
+                event,
+                WindowManagerEvent::Manage(_) | WindowManagerEvent::Unmanage(_)
+            );
 
         let should_manage = if bypass_should_manage {
             true

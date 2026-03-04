@@ -232,6 +232,8 @@ pub enum SocketMessage {
     ManageRule(ApplicationIdentifier, String),
     /// Enable or disable whitelist mode
     WhitelistMode(bool),
+    /// Enable or disable force manage mode
+    ForceManage(bool),
     IdentifyObjectNameChangeApplication(ApplicationIdentifier, String),
     IdentifyTrayApplication(ApplicationIdentifier, String),
     IdentifyLayeredApplication(ApplicationIdentifier, String),

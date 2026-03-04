@@ -10,6 +10,7 @@ use crate::DISPLAY_INDEX_PREFERENCES;
 use crate::FLOATING_APPLICATIONS;
 use crate::FLOATING_WINDOW_TOGGLE_ASPECT_RATIO;
 use crate::FloatingLayerBehaviour;
+use crate::FORCE_MANAGE_ENABLED;
 use crate::HIDING_BEHAVIOUR;
 use crate::IGNORE_IDENTIFIERS;
 use crate::LAYERED_WHITELIST;
@@ -593,6 +594,10 @@ pub struct StaticConfig {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[cfg_attr(feature = "schemars", schemars(extend("default" = false)))]
     pub whitelist_mode: Option<bool>,
+    /// Enable force manage mode (allow manual manage/unmanage commands to bypass rules)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[cfg_attr(feature = "schemars", schemars(extend("default" = false)))]
+    pub force_manage: Option<bool>,
     /// Identify applications which should be managed as floating windows
     #[serde(skip_serializing_if = "Option::is_none")]
     pub floating_applications: Option<Vec<MatchingRule>>,
@@ -892,6 +897,7 @@ impl From<&WindowManager> for StaticConfig {
             floating_applications: None,
             manage_rules: None,
             whitelist_mode: Some(WHITELIST_MODE_ENABLED.load(Ordering::SeqCst)),
+            force_manage: Some(FORCE_MANAGE_ENABLED.load(Ordering::SeqCst)),
             border_overflow_applications: None,
             tray_and_multi_window_applications: None,
             layered_applications: None,
@@ -1102,6 +1108,12 @@ impl StaticConfig {
         if let Some(whitelist_mode) = self.whitelist_mode {
             WHITELIST_MODE_ENABLED.store(whitelist_mode, Ordering::SeqCst);
             tracing::info!("Whitelist mode: {}", if whitelist_mode { "enabled" } else { "disabled" });
+        }
+
+        // Apply force manage setting
+        if let Some(force_manage) = self.force_manage {
+            FORCE_MANAGE_ENABLED.store(force_manage, Ordering::SeqCst);
+            tracing::info!("Force manage mode: {}", if force_manage { "enabled" } else { "disabled" });
         }
 
         if let Some(rules) = &mut self.object_name_change_applications {

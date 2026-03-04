@@ -24,6 +24,7 @@ use crate::CUSTOM_FFM;
 use crate::DATA_DIR;
 use crate::DISPLAY_INDEX_PREFERENCES;
 use crate::FLOATING_APPLICATIONS;
+use crate::FORCE_MANAGE_ENABLED;
 use crate::HIDING_BEHAVIOUR;
 use crate::IGNORE_IDENTIFIERS;
 use crate::INITIAL_CONFIGURATION_LOADED;
@@ -575,6 +576,12 @@ impl WindowManager {
 
                 let status = if enabled { "enabled" } else { "disabled" };
                 tracing::info!("Whitelist mode {}", status);
+            }
+            SocketMessage::ForceManage(enabled) => {
+                FORCE_MANAGE_ENABLED.store(enabled, Ordering::SeqCst);
+
+                let status = if enabled { "enabled" } else { "disabled" };
+                tracing::info!("Force manage mode {}", status);
             }
             SocketMessage::SessionFloatRule => {
                 let foreground_window = WindowsApi::foreground_window()?;
