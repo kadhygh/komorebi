@@ -29,6 +29,10 @@ Tiling Window Management for Windows.
 
 ![screenshot](https://user-images.githubusercontent.com/13164844/184027064-f5a6cec2-2865-4d65-a549-a1f1da589abf.png)
 
+## Fork Note
+
+This fork currently focuses on a Windows `portable zip` pre-release for quicker onboarding: package-local `config\`, no mandatory `PATH` setup, and a relative-path AutoHotkey example. See `release/portable/README-快速开始.md` for the current quickstart.
+
 ## Note: Students using devices enrolled in mobile device management (MDM)
 
 Your usage still falls under the [Komorebi License 2.0.0](./LICENSE.md).
