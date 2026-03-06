@@ -12,3 +12,5 @@ komorebic/applications.json
 /.xwin-cache
 result
 /.direnv
+/release/.build/
+/release/artifacts/

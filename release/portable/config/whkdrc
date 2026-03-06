@@ -1,0 +1,43 @@
+.shell powershell
+
+# Portable whkd sample for this fork.
+#
+# Usage:
+#   1. Open PowerShell in the portable root directory.
+#   2. Run: $env:WHKD_CONFIG_HOME = "$PWD\config"
+#   3. Start whkd separately: Start-Process whkd -WindowStyle hidden
+#
+# This sample does not require PATH. It calls the packaged komorebic.exe directly.
+# Key names: oem_1 = ;, oem_4 = [, oem_6 = ]
+
+win + h                 : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" focus left
+win + j                 : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" focus down
+win + k                 : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" focus up
+win + l                 : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" focus right
+
+win + shift + h         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" move left
+win + shift + j         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" move down
+win + shift + k         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" move up
+win + shift + l         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" move right
+
+win + 1                 : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" focus-workspace 0
+win + 2                 : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" focus-workspace 1
+win + 3                 : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" focus-workspace 2
+win + 4                 : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" focus-workspace 3
+
+win + shift + 1         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" send-to-workspace 0
+win + shift + 2         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" send-to-workspace 1
+win + shift + 3         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" send-to-workspace 2
+win + shift + 4         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" send-to-workspace 3
+
+win + alt + h           : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" stack left
+win + alt + j           : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" stack down
+win + alt + k           : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" stack up
+win + alt + l           : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" stack right
+
+alt + oem_4             : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" cycle-stack previous
+alt + oem_6             : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" cycle-stack next
+alt + oem_1             : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" unstack
+
+win + shift + m         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" manage
+win + shift + n         : & "$Env:WHKD_CONFIG_HOME\..\bin\komorebic.exe" unmanage
