@@ -9,6 +9,7 @@
   "border_width": 8,
   "border_offset": -1,
   "whitelist_mode": true,
+  "force_manage": true,
   "manage_rules": [
     {
       "kind": "exe",

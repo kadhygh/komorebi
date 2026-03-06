@@ -8,6 +8,8 @@
   "border": true,
   "border_width": 8,
   "border_offset": -1,
+  "whitelist_mode": true,
+  "force_manage": true,
   "theme": {
     "palette": "Base16",
     "name": "Ashes",
