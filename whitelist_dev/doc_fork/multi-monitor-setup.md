@@ -1,5 +1,8 @@
 ﻿# 多显示器配置（Fork 说明）
 
+> 最后核对日期：2026-03-06
+
+
 ## 先记住一个核心点
 
 `komorebic focus-workspace <n>` 只会作用在 **当前 focused monitor** 上。
@@ -111,3 +114,5 @@ komorebic focus-monitor-workspace 1 0
 
 - `./troubleshooting.md`
 - `./autohotkey.md`
+- `./autostart.md`
+- `./advanced-usage-guide.md`

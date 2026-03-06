@@ -2,6 +2,8 @@
 
 本目录用于维护当前 `komorebi` fork 的中文文档。
 
+> 最后核对日期：2026-03-06
+
 ## 为什么需要这套文档
 
 在这次整理中，已经确认上游文档与当前代码/实测行为之间存在一些偏差，尤其集中在以下主题：
@@ -18,6 +20,8 @@
 
 - `README.md`
   - 本目录用途、维护原则与阅读路径
+- `index.md`
+  - 当前这份总索引，适合快速定位主题
 - `autohotkey.md`
   - AHK 路线说明、EOL 状态、适合本 fork 的建议配置思路
 - `autostart.md`
@@ -37,12 +41,25 @@
 - `compile-test-report-archive.md`
   - 历史测试报告归档
 
+## 推荐阅读顺序
+
+- 想先理解当前 fork 的总策略：`README.md` → `project-analysis.md`
+- 想先看可直接落地的配置：`example-configurations.md` → `autostart.md`
+- 想先解决热键与 IDE 冲突：`autohotkey.md` → `troubleshooting.md` → `advanced-usage-guide.md`
+- 想先解决双显示器切换问题：`multi-monitor-setup.md` → `project-analysis.md`
+
 ## 使用方式
 
 - 想快速上手：先看 `autohotkey.md`、`multi-monitor-setup.md`
 - 想知道当前代码到底怎么跑：看 `project-analysis.md`
 - 想查问题：看 `troubleshooting.md`
 - 想对照配置：看 `example-configurations.md`
+
+## 命名说明
+
+- `README.md`：入口与维护原则
+- `index.md`：索引与阅读路径
+- `*-archive.md`：归档文档，不应直接视为当前事实来源
 
 ## 说明
 

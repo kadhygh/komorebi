@@ -1,5 +1,8 @@
 ﻿# 自动启动（Fork 说明）
 
+> 最后核对日期：2026-03-06
+
+
 ## 目标
 
 本页描述这个 fork 下更推荐的启动方式，而不是逐字重复上游 CLI 帮助。
@@ -88,3 +91,5 @@ komorebic enable-autostart --ahk --bar
 
 - `./autohotkey.md`
 - `./troubleshooting.md`
+- `./multi-monitor-setup.md`
+- `./advanced-usage-guide.md`

@@ -1,5 +1,7 @@
 ﻿# 高级使用指南（Fork 版）
 
+> 最后核对日期：2026-03-06
+
 ## 文档定位
 
 这份文档是 `whitelist_dev/advanced_usage_guide.md` 的 fork 重写版，目标不是覆盖所有 CLI，而是给出一套**当前可落地、和本 fork 结论一致**的用法。

@@ -2,6 +2,8 @@
 
 这是当前 `komorebi` fork 的自维护文档入口。
 
+> 最后核对日期：2026-03-06
+
 ## 目的
 
 这套文档不试图替代上游 `README.md` 和 `docs/`，而是补充本 fork 在实际使用、排障、配置取舍和代码调查中的结论，重点覆盖：
@@ -30,7 +32,7 @@
 ### 工作流与使用建议
 
 - `autohotkey.md`：AHK 的当前支持状态、适用场景、限制与迁移建议
-- `autostart.md`：启动项、后台启动、AHP/whkd 的使用建议
+- `autostart.md`：启动项、后台启动、AHK / `whkd` 的使用建议
 - `multi-monitor-setup.md`：多显示器、多工作区、焦点与 monitor/workspace 的实际语义
 - `troubleshooting.md`：结合当前 fork 的常见问题与排障路径
 - `example-configurations.md`：示例配置的 fork 说明、默认项与建议改法
@@ -51,10 +53,20 @@
 
 1. `index.md`
 2. `project-analysis.md`
-3. `autohotkey.md`
-4. `multi-monitor-setup.md`
-5. `troubleshooting.md`
-6. `example-configurations.md`
+3. `example-configurations.md`
+4. `autohotkey.md`
+5. `autostart.md`
+6. `multi-monitor-setup.md`
+7. `troubleshooting.md`
+8. `advanced-usage-guide.md`
+
+如果你是按问题来找资料，也可以直接走下面的路径：
+
+- 热键方案取舍：`autohotkey.md` → `advanced-usage-guide.md`
+- 启动与自启动：`autostart.md` → `troubleshooting.md`
+- 双显示器 / workspace：`multi-monitor-setup.md` → `project-analysis.md`
+- 默认配置与模板：`example-configurations.md` → `project-analysis.md`
+- 历史背景：`implementation-plan-archive.md`、`compile-test-report-archive.md`
 
 ## 当前维护原则
 

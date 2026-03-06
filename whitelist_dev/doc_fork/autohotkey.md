@@ -1,5 +1,8 @@
 ﻿# AutoHotkey（Fork 说明）
 
+> 最后核对日期：2026-03-06
+
+
 ## 结论
 
 在这个 fork 的使用语境里，`AutoHotkey` 仍然可用，但应视为 **legacy / EOL 路线**：
@@ -87,3 +90,4 @@ AHK 不是内建热键系统，而是“**AHK 脚本 + 调用 `komorebic` CLI**�
 - `./multi-monitor-setup.md`
 - `./troubleshooting.md`
 - `./advanced-usage-guide.md`
+- `./project-analysis.md`

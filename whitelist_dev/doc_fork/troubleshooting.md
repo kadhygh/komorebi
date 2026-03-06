@@ -1,5 +1,8 @@
 ﻿# 故障排查（Fork 说明）
 
+> 最后核对日期：2026-03-06
+
+
 ## 1. AHK 能用，但要知道它是 legacy/EOL
 
 如果你看到 `komorebic start --ahk` 还能工作，这并不代表它仍是上游主推路径。
@@ -121,3 +124,4 @@ komorebic focus-monitor-workspace 1 2
 - `./autohotkey.md`
 - `./autostart.md`
 - `./multi-monitor-setup.md`
+- `./advanced-usage-guide.md`
