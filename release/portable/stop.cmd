@@ -10,7 +10,7 @@ if not exist "%BIN_DIR%\komorebic.exe" (
   exit /b 1
 )
 
-call "%BIN_DIR%\komorebic.exe" stop
+call "%BIN_DIR%\komorebic.exe" stop --bar
 
 if errorlevel 1 (
   exit /b %errorlevel%
